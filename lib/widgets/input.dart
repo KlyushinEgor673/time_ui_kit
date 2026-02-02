@@ -93,8 +93,7 @@ class _InputState extends State<Input> {
                   horizontal: orientation == Orientation.portrait ? 14.w : 14,
                   vertical: 0,
                 ),
-                child: SizedBox(
-                  width: orientation == Orientation.portrait ? widget.isPassword ? 265.w : 307 : widget.isPassword ? 265 : 307,
+                child: Expanded(
                   child: TextSelectionTheme(
                     data: TextSelectionThemeData(
                       cursorColor: Color.fromRGBO(26, 111, 238, 1),

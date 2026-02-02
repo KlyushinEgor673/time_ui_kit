@@ -88,12 +88,11 @@ class _InputState extends State<Input> {
           ),
           child: Row(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: orientation == Orientation.portrait ? 14.w : 14,
-                  vertical: 0,
-                ),
-                child: Expanded(
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: orientation == Orientation.portrait ? 14.w : 14,
+                  ),
                   child: TextSelectionTheme(
                     data: TextSelectionThemeData(
                       cursorColor: Color.fromRGBO(26, 111, 238, 1),

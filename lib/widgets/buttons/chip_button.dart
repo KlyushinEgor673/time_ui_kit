@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum ChipButtonColor { blue, gray }
+enum ChipButtonStatus { ON, OFF }
 
 class ChipButton extends StatelessWidget {
   const ChipButton({
     super.key,
-    required this.color,
+    required this.status,
     required this.text,
     required this.onTap,
   });
 
-  final ChipButtonColor color;
+  final ChipButtonStatus status;
   final String text;
   final VoidCallback onTap;
 
@@ -24,7 +24,7 @@ class ChipButton extends StatelessWidget {
         width: orientation == Orientation.portrait ? 129.w : 129,
         height: orientation == Orientation.portrait ? 48.h : 48,
         decoration: BoxDecoration(
-          color: color == ChipButtonColor.blue
+          color: status == ChipButtonStatus.ON
               ? Color.fromRGBO(26, 111, 238, 1)
               : Color.fromRGBO(245, 245, 249, 1),
           borderRadius: BorderRadius.circular(10),
@@ -37,7 +37,7 @@ class ChipButton extends StatelessWidget {
               fontSize: 14.sp,
               height: 20 / 14,
               letterSpacing: 0,
-              color: color == ChipButtonColor.blue
+              color: status == ChipButtonStatus.ON
                   ? Colors.white
                   : Color.fromRGBO(126, 126, 154, 1),
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Tabbar extends StatelessWidget {
+class Tabbar extends StatefulWidget {
   const Tabbar({
     super.key,
     required this.activeIndex,
@@ -17,6 +17,22 @@ class Tabbar extends StatelessWidget {
   final VoidCallback oneCallback;
   final VoidCallback twoCallback;
   final VoidCallback threeCallback;
+
+  @override
+  State<Tabbar> createState() => _TabbarState();
+}
+
+class _TabbarState extends State<Tabbar> {
+  late int _activeIndex;
+  late int _oldIndex;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _activeIndex = widget.activeIndex;
+    _oldIndex = _activeIndex;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +62,18 @@ class Tabbar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: zeroCallback,
+              onTap: widget.zeroCallback,
+              onTapDown: (_) {
+                setState(() {
+                  _oldIndex = _activeIndex;
+                  _activeIndex = 0;
+                });
+              },
+              onTapUp: (_) {
+                setState(() {
+                  _activeIndex = _oldIndex;
+                });
+              },
               child: SizedBox(
                 width: orientation == Orientation.portrait ? 76.w : 76,
                 height: orientation == Orientation.portrait ? 49.w : 49,
@@ -66,9 +93,12 @@ class Tabbar extends StatelessWidget {
                           width: orientation == Orientation.portrait
                               ? 32.w
                               : 32,
-                          color: activeIndex == 0
-                              ? Color.fromRGBO(26, 111, 238, 1)
-                              : Color.fromRGBO(184, 193, 204, 1),
+                          colorFilter: ColorFilter.mode(
+                            _activeIndex == 0
+                                ? Color.fromRGBO(26, 111, 238, 1)
+                                : Color.fromRGBO(184, 193, 204, 1),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
@@ -86,7 +116,7 @@ class Tabbar extends StatelessWidget {
                                 : 12,
                             height: 16 / 12,
                             letterSpacing: 0,
-                            color: activeIndex == 0
+                            color: _activeIndex == 0
                                 ? Color.fromRGBO(26, 111, 238, 1)
                                 : Color.fromRGBO(184, 193, 204, 1),
                           ),
@@ -99,7 +129,18 @@ class Tabbar extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: oneCallback,
+              onTap: widget.oneCallback,
+              onTapDown: (_) {
+                setState(() {
+                  _oldIndex = _activeIndex;
+                  _activeIndex = 1;
+                });
+              },
+              onTapUp: (_) {
+                setState(() {
+                  _activeIndex = _oldIndex;
+                });
+              },
               child: SizedBox(
                 width: orientation == Orientation.portrait ? 76.w : 76,
                 height: orientation == Orientation.portrait ? 49.w : 49,
@@ -119,9 +160,12 @@ class Tabbar extends StatelessWidget {
                           width: orientation == Orientation.portrait
                               ? 32.w
                               : 32,
-                          color: activeIndex == 1
-                              ? Color.fromRGBO(26, 111, 238, 1)
-                              : Color.fromRGBO(184, 193, 204, 1),
+                          colorFilter: ColorFilter.mode(
+                            _activeIndex == 1
+                                ? Color.fromRGBO(26, 111, 238, 1)
+                                : Color.fromRGBO(184, 193, 204, 1),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
@@ -139,7 +183,7 @@ class Tabbar extends StatelessWidget {
                                 : 12,
                             height: 16 / 12,
                             letterSpacing: 0,
-                            color: activeIndex == 1
+                            color: _activeIndex == 1
                                 ? Color.fromRGBO(26, 111, 238, 1)
                                 : Color.fromRGBO(184, 193, 204, 1),
                           ),
@@ -152,7 +196,18 @@ class Tabbar extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: twoCallback,
+              onTap: widget.twoCallback,
+              onTapDown: (_) {
+                setState(() {
+                  _oldIndex = _activeIndex;
+                  _activeIndex = 2;
+                });
+              },
+              onTapUp: (_) {
+                setState(() {
+                  _activeIndex = _oldIndex;
+                });
+              },
               child: SizedBox(
                 width: orientation == Orientation.portrait ? 76.w : 76,
                 height: orientation == Orientation.portrait ? 49.w : 49,
@@ -172,9 +227,12 @@ class Tabbar extends StatelessWidget {
                           width: orientation == Orientation.portrait
                               ? 24.w
                               : 24,
-                          color: activeIndex == 2
-                              ? Color.fromRGBO(26, 111, 238, 1)
-                              : Color.fromRGBO(184, 193, 204, 1),
+                          colorFilter: ColorFilter.mode(
+                            _activeIndex == 2
+                                ? Color.fromRGBO(26, 111, 238, 1)
+                                : Color.fromRGBO(184, 193, 204, 1),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
@@ -192,7 +250,7 @@ class Tabbar extends StatelessWidget {
                                 : 12,
                             height: 16 / 12,
                             letterSpacing: 0,
-                            color: activeIndex == 2
+                            color: _activeIndex == 2
                                 ? Color.fromRGBO(26, 111, 238, 1)
                                 : Color.fromRGBO(184, 193, 204, 1),
                           ),
@@ -205,7 +263,18 @@ class Tabbar extends StatelessWidget {
             ),
 
             GestureDetector(
-              onTap: threeCallback,
+              onTap: widget.threeCallback,
+              onTapDown: (_) {
+                setState(() {
+                  _oldIndex = _activeIndex;
+                  _activeIndex = 3;
+                });
+              },
+              onTapUp: (_) {
+                setState(() {
+                  _activeIndex = _oldIndex;
+                });
+              },
               child: SizedBox(
                 width: orientation == Orientation.portrait ? 76.w : 76,
                 height: orientation == Orientation.portrait ? 49.w : 49,
@@ -225,9 +294,12 @@ class Tabbar extends StatelessWidget {
                           width: orientation == Orientation.portrait
                               ? 32.w
                               : 32,
-                          color: activeIndex == 2
-                              ? Color.fromRGBO(26, 111, 238, 1)
-                              : Color.fromRGBO(184, 193, 204, 1),
+                          colorFilter: ColorFilter.mode(
+                            _activeIndex == 3
+                                ? Color.fromRGBO(26, 111, 238, 1)
+                                : Color.fromRGBO(184, 193, 204, 1),
+                            BlendMode.srcIn,
+                          ),
                         ),
                       ),
                     ),
@@ -245,7 +317,7 @@ class Tabbar extends StatelessWidget {
                                 : 12,
                             height: 16 / 12,
                             letterSpacing: 0,
-                            color: activeIndex == 2
+                            color: _activeIndex == 3
                                 ? Color.fromRGBO(26, 111, 238, 1)
                                 : Color.fromRGBO(184, 193, 204, 1),
                           ),
